@@ -26,7 +26,8 @@ useEffect(() => {
         </Route>
         <Route path="/" exact>
         {/* Created seprate Compenents for Home Pages. */}
-          <h1><Home/></h1>
+        {/* Passed the state products to the Home Component. */}
+          <h1><Home products={products}/></h1>
         </Route>
       {/* <div>
         {products?JSON.stringify(products):"eerg"}
