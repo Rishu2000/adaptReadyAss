@@ -7,6 +7,7 @@ import Home from './pages/Home';
 const App = () => {
 
 const [products, setProducts] = useState([]);
+const [cartItems, setCartItems] = useState([]);
 
 useEffect(() => {
   const fetchProducts = async () => {
@@ -22,12 +23,12 @@ useEffect(() => {
       <Switch>
         <Route path="/checkOut">
         {/* Created seprate Compenents for Check Out Pages. */}
-          <h1><CheckOut/></h1>
+          <CheckOut cartItems={cartItems} setCartItems={setCartItems}/>
         </Route>
         <Route path="/" exact>
         {/* Created seprate Compenents for Home Pages. */}
         {/* Passed the state products to the Home Component. */}
-          <h1><Home products={products}/></h1>
+          <Home products={products} cartItems={cartItems} setCartItems={setCartItems}/>
         </Route>
       {/* <div>
         {products?JSON.stringify(products):"eerg"}
