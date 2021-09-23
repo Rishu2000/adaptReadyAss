@@ -1,7 +1,8 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 
-const Home = ({products}) => {
+const Home = ({products, cartItems, setCartItems}) => {
+    // console.log(products);
 
 const history = useHistory();
 
@@ -9,6 +10,11 @@ const history = useHistory();
 const handleClick = (e) => {
     e.preventDefault();
     history.push('/checkOut');
+}
+
+const handleCart = (product) => {
+    const {image, price, rating, title, id} = product;
+    setCartItems([...cartItems, {image, price, rating, title, id}]);
 }
 
     return (
@@ -35,7 +41,10 @@ const handleClick = (e) => {
                                 <h6><i>Rating:</i> {product.rating.rate}({product.rating.count})</h6>
                             </div>
                             <div className="pt-2" style={{display: 'flex', justifyContent: 'center'}}>
-                                <button className="btn btn-info" style={{height: '40px'}}>Add to Cart</button>
+                                <button className="btn btn-info" style={{height: '40px'}} 
+                                    onClick={() => handleCart(product)}>
+                                    Add to Cart
+                                </button>
                             </div>
                         </div>
                     ))
