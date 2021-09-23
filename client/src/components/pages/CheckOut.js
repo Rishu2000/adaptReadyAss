@@ -10,6 +10,12 @@ const history = useHistory();
         history.push('/');
     }
 
+    const handleDelete = (key) => {
+        var cartArray = [...cartItems];
+        var remove = cartArray.splice(key,1);
+        setCartItems([...cartArray]);
+    }
+
     return (
     <div className="container">
         <div className="row pt-3">
@@ -36,7 +42,7 @@ const history = useHistory();
                         </div>
                         <div className="pt-2" style={{display: 'flex', justifyContent: 'center'}}>
                             <button className="btn btn-danger" style={{height: '40px'}} 
-                                // onClick={() => handleCart(product)}
+                                onClick={() => handleDelete(key)}
                                 >
                                 Delete
                             </button>
