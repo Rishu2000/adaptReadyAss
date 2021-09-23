@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
 const CheckOut = ({cartItems, setCartItems}) => {
+
+const [buyStatus, setBuyStatus] = useState(null);
 
 const history = useHistory();
 
@@ -14,6 +16,11 @@ const history = useHistory();
         var cartArray = [...cartItems];
         var remove = cartArray.splice(key,1);
         setCartItems([...cartArray]);
+    }
+
+    const handleBuy = (e) => {
+        e.preventDefault();
+        setBuyStatus('Order Placed, and will be delivered soon.');
     }
 
     return (
@@ -31,31 +38,37 @@ const history = useHistory();
                 </div>
             </div>
             <div className="pt-3" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-                {/* Products */}
-                {cartItems.length > 0 ?cartItems.map((product, key) => (
-                    <div key={key} className="p-2 m-2" style={{backgroundColor:"#b3e0ff", borderRadius:"5px", width:"250px"}}>
-                        <h5 style={{height:"70px"}}>{product.title}</h5>
-                        <img src={product.image} alt="Product1" width="100%" height="300px"/>
-                        <div className="pt-2" style={{display: 'flex', justifyContent: 'space-between'}}>
-                            <h6><i>Price:</i> {product.price}</h6>
-                            <h6><i>Rating:</i> {product.rating.rate}({product.rating.count})</h6>
+                {buyStatus?(
+                    <div className="alert alert-success">{buyStatus}</div>
+                ):(<>
+                    {/* Products */}
+                    {cartItems.length > 0 ?cartItems.map((product, key) => (
+                        <div key={key} className="p-2 m-2" style={{backgroundColor:"#b3e0ff", borderRadius:"5px", width:"250px"}}>
+                            <h5 style={{height:"70px"}}>{product.title}</h5>
+                            <img src={product.image} alt="Product1" width="100%" height="300px"/>
+                            <div className="pt-2" style={{display: 'flex', justifyContent: 'space-between'}}>
+                                <h6><i>Price:</i> {product.price}</h6>
+                                <h6><i>Rating:</i> {product.rating.rate}({product.rating.count})</h6>
+                            </div>
+                            <div className="pt-2" style={{display: 'flex', justifyContent: 'center'}}>
+                                <button className="btn btn-danger" style={{height: '40px'}} 
+                                    onClick={() => handleDelete(key)}
+                                    >
+                                    Delete
+                                </button>
+                            </div>
                         </div>
-                        <div className="pt-2" style={{display: 'flex', justifyContent: 'center'}}>
-                            <button className="btn btn-danger" style={{height: '40px'}} 
-                                onClick={() => handleDelete(key)}
-                                >
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                ))
-                :(
-                    <div className="alert alert-info"><h1>Cart is Empty</h1></div>
+                    ))
+                    :(
+                        <div className="alert alert-info"><h1>Cart is Empty</h1></div>
+                    )}
+                </>
                 )}
             </div>
-            {cartItems.length > 0 &&
+            {cartItems.length > 0 && buyStatus === null &&
             (<div className="pt-2"style={{display: 'flex', justifyContent:'center'}}>
-                <button className="btn btn-primary btn-lg" style={{width:"150px"}}>
+                <button className="btn btn-primary btn-lg" style={{width:"150px"}}
+                    onClick={handleBuy}>
                     Buy
                 </button>
             </div>)}
