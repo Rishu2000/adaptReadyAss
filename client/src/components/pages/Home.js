@@ -1,11 +1,29 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 
 const Home = ({products}) => {
-    console.log(products);
+
+const history = useHistory();
+
+// Handle the click event to go to the Cart Page
+const handleClick = (e) => {
+    e.preventDefault();
+    history.push('/checkOut');
+}
+
     return (
         <div className="container">
             <div className="row pt-3">
-                <h1 className="text-center">Products</h1>
+                <div style={{display: 'flex', justifyContent:'space-between'}}>
+                    <div></div>
+                    <h1 className="text-center">Products</h1>
+                    <div>
+                        {/* Created a button to go to the Cart Page. */}
+                        <button className="btn btn-primary" onClick={handleClick}>
+                            My Cart
+                        </button>
+                    </div>
+                </div>
                 <div className="pt-3" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
                     {/* Products */}
                     {products?products.map((product, key) => (
