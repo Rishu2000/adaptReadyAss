@@ -20,10 +20,10 @@ const handleSubmit = async (e) => {
 
     return (
         <div>
+            <h2 className="text-center">Login</h2>
             {error && (
                 <div className="alert alert-danger">{error}</div>
             )}
-            <h2 className="text-center">Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label className="form-label">Username</label>
