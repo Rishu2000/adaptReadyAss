@@ -1,6 +1,7 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 import LoginForm from "../forms/LoginForm"
+import RegForm from '../forms/RegForm';
 
 const Home = ({products, cartItems, setCartItems, user, setUser}) => {
     // console.log(products);
@@ -59,8 +60,13 @@ const handleCart = (product) => {
                 </div>
                 </>
                 ) : (
-                    <div>
-                        <LoginForm setUser={setUser}/>
+                    <div className="row">
+                        <div className="col-6">
+                            <LoginForm setUser={setUser}/>
+                        </div>
+                        <div className="col-6">
+                            <RegForm/>
+                        </div>
                     </div>
                 )}
             </div>
