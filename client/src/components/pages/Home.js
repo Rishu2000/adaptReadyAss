@@ -1,7 +1,8 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
+import LoginForm from "../forms/LoginForm"
 
-const Home = ({products, cartItems, setCartItems}) => {
+const Home = ({products, cartItems, setCartItems, user, setUser}) => {
     // console.log(products);
 
 const history = useHistory();
@@ -20,8 +21,10 @@ const handleCart = (product) => {
     return (
         <div className="container">
             <div className="row pt-3">
-                <div style={{display: 'flex', justifyContent:'space-between'}}>
-                    <div></div>
+                {user? (
+                    <>
+                    <div style={{display: 'flex', justifyContent:'space-between'}}>
+                    <div><h3>Hi, {user}</h3></div>
                     <h1 className="text-center">Products</h1>
                     <div>
                         {/* Created a button to go to the Cart Page. */}
@@ -54,6 +57,12 @@ const handleCart = (product) => {
                         <h1>No Products found.</h1>
                     )}
                 </div>
+                </>
+                ) : (
+                    <div>
+                        <LoginForm setUser={setUser}/>
+                    </div>
+                )}
             </div>
         </div>
     )
