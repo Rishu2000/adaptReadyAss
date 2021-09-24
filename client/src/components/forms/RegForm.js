@@ -10,9 +10,7 @@ const [password, setPassword] = useState(null);
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`${username} and ${password}`)
     await axios.post('/register',{username, password}).then((res) => {
-        console.log(res.data);
         setSuccess(res.data.Message);
         setError(null);
     }).catch((err) => {
