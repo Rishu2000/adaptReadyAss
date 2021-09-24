@@ -7,6 +7,7 @@ const login = require('./route/login');
 const register = require('./route/register');
 
 app.use(cors());
+app.use(express.json());
 app.use(session({
     secret: 'adapt ready project',
     resave: false,
