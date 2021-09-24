@@ -16,11 +16,13 @@ login.post('/', (req, res) => {
     if(!username || !password){
         res.status(400).json("Please provide username and password both");
     }else{
-        // res.json(users[username]);
         if(users[username]){
             if(users[username] === password){
                 req.session.Authentication = req.body;
-                res.status(202).json("Successfully loged in");
+                res.status(202).json({
+                    Message:"Successfully loged in",
+                    user:req.session.Authentication
+                });
             }else{
                 res.status(400).json("Please enter correct password.");
             }
