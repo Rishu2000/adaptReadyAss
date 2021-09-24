@@ -41,9 +41,11 @@ const handleCart = (product) => {
                                 <h6><i>Rating:</i> {product.rating.rate}({product.rating.count})</h6>
                             </div>
                             <div className="pt-2" style={{display: 'flex', justifyContent: 'center'}}>
-                                <button className="btn btn-info" style={{height: '40px'}} 
+                            {/* Handle diable functionality once the product has been added to the cart. */}
+                                <button disabled={cartItems.find(cartItem => cartItem.id === product.id)} className="btn btn-info" style={{height: '40px'}} 
                                     onClick={() => handleCart(product)}>
-                                    Add to Cart
+                                     {/* changed the Button Text once added to the cart. */}
+                                    {cartItems.find(cartItem => cartItem.id === product.id)? 'Added' : 'Add to Cart'}
                                 </button>
                             </div>
                         </div>
