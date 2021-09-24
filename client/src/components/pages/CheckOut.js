@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
-const CheckOut = ({cartItems, setCartItems}) => {
+const CheckOut = ({user, cartItems, setCartItems}) => {
 
 const [buyStatus, setBuyStatus] = useState(null);
 
@@ -27,7 +27,7 @@ const history = useHistory();
     <div className="container">
         <div className="row pt-3">
             <div style={{display: 'flex', justifyContent:'space-between'}}>
-                <div></div>
+                <div><h3>Hi, {user}</h3></div>
                 <h1 className="text-center">My Cart</h1>
                 <div>
                     {/* Created a button to go to the Cart Page. */}
