@@ -1,18 +1,35 @@
 import React, {useState} from 'react'
+import axios from '../axiosCall/axios';
 
 const RegForm = () => {
 
+const [success, setSuccess] = useState(null);
+const [error, setError] = useState(null);
 const [username, setUsername] = useState(null);
 const [password, setPassword] = useState(null);
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(`${username} and ${password}`)
+    await axios.post('/register',{username, password}).then((res) => {
+        console.log(res.data);
+        setSuccess(res.data.Message);
+        setError(null);
+    }).catch((err) => {
+        setError(err.response.data);
+        setSuccess(null)
+    })
 }
 
     return (
         <div>
             <h2 className="text-center">Register</h2>
+            {success && (
+                <div className="alert alert-success">User {success} has been created.</div>
+            )}
+            {error && (
+                <div className="alert alert-danger">{error}</div>
+            )}
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label className="form-label">Username</label>
