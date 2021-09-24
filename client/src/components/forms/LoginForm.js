@@ -25,11 +25,10 @@ const handleSubmit = async (e) => {
             )}
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label className="form-label">Email address</label>
+                    <label className="form-label">Username</label>
                     <input type="text" className="form-control"
                         onChange={(e) => setUsername(e.target.value)}
-                        id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                        id="exampleInputUsername1" aria-describedby="UsernameHelp"/>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Password</label>
