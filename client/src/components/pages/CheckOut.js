@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
-const CheckOut = ({user, cartItems, setCartItems}) => {
+const CheckOut = ({user, setUser, cartItems, setCartItems}) => {
 
 const [buyStatus, setBuyStatus] = useState(null);
 
@@ -20,7 +20,14 @@ const history = useHistory();
 
     const handleBuy = (e) => {
         e.preventDefault();
+        setCartItems([]);
         setBuyStatus('Order Placed, and will be delivered soon.');
+    }
+
+    const handleLogoutCO = (e) => {
+        e.preventDefault();
+        setUser(null);
+        handleClick(e);
     }
 
     return (
@@ -30,8 +37,12 @@ const history = useHistory();
                 <div><h3>Hi, {user}</h3></div>
                 <h1 className="text-center">My Cart</h1>
                 <div>
+                    <button className="btn btn-danger"
+                        onClick={handleLogoutCO}>
+                        Log out
+                    </button>
                     {/* Created a button to go to the Cart Page. */}
-                    <button className="btn btn-primary" 
+                    <button className="btn btn-primary mx-2" 
                         onClick={handleClick}>
                         Products
                     </button>
