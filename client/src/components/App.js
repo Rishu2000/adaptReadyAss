@@ -24,7 +24,7 @@ useEffect(() => {
       <Switch>
         <Route path="/checkOut">
         {/* Created seprate Compenents for Check Out Pages. */}
-          <CheckOut user={user} cartItems={cartItems} setCartItems={setCartItems}/>
+          <CheckOut user={user} setUser={setUser} cartItems={cartItems} setCartItems={setCartItems}/>
         </Route>
         <Route path="/" exact>
         {/* Created seprate Compenents for Home Pages. */}
