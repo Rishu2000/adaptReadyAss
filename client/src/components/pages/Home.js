@@ -28,8 +28,12 @@ const handleCart = (product) => {
                     <div><h3>Hi, {user}</h3></div>
                     <h1 className="text-center">Products</h1>
                     <div>
+                        <button className="btn btn-danger"
+                            onClick={() => setUser(null)}>
+                            Log out
+                        </button>
                         {/* Created a button to go to the Cart Page. */}
-                        <button className="btn btn-primary" onClick={handleClick}>
+                        <button className="btn btn-primary mx-2" onClick={handleClick}>
                             My Cart
                         </button>
                     </div>
